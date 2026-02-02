@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+}
+
+/* Custom Scrollbar for Kick Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0E0F; 
+}
+::-webkit-scrollbar-thumb {
+  background: #53FC18; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #42c912; 
+}
+
+input[type="range"] {
+  @apply accent-kick-green;
+}
