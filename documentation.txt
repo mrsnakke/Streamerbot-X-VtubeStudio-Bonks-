@@ -1,0 +1,68 @@
+================================================================================
+                                KICKBONK v2.0
+                            Documentación Técnica
+================================================================================
+
+DESCRIPCIÓN
+-----------
+KickBonk es una aplicación de escritorio (Electron) para streamers que permite
+lanzar objetos virtuales a modelos VTube Studio con físicas simuladas.
+Está diseñada con React, Vite y Tailwind CSS.
+
+ESTRUCTURA DE ARCHIVOS
+----------------------
+/
+├── electron/
+│   ├── main.ts         # Proceso principal de Electron (Backend local).
+│   └── preload.ts      # Puente de seguridad entre Electron y React.
+│
+├── public/             # CARPETA DE RECURSOS (Imágenes y Sonidos)
+│   ├── img/            # Coloca aquí tus imágenes (.png, .gif)
+│   └── sound/          # Coloca aquí tus sonidos (.mp3, .wav)
+│
+├── src/
+│   ├── pages/
+│   │   ├── ControlPanel.tsx  # Interfaz principal (Dashboard).
+│   │   └── Overlay.tsx       # Ventana transparente que realiza la animación.
+│   │
+│   ├── vts/            # Módulo de conexión con VTube Studio.
+│   ├── constants.ts    # Configuración por defecto y lista de objetos.
+│   └── types.ts        # Definiciones de TypeScript.
+│
+└── index.html          # Punto de entrada web.
+
+PERSONALIZACIÓN DE OBJETOS
+--------------------------
+Para añadir nuevos objetos para lanzar:
+
+1. Guarda la imagen en la carpeta `public/img/` (ej: `mi_objeto.png`).
+2. Edita el archivo `src/constants.ts`.
+3. Busca la constante `DEFAULT_ITEMS` y añade tu objeto:
+
+   export const DEFAULT_ITEMS = [
+     { image: "img/mi_objeto.png", weight: 1, scale: 1, volume: 1, pixel: false },
+     ...
+   ];
+
+COMO EDITAR
+-----------
+1. Interfaz (Colores, Botones): Edita `src/pages/ControlPanel.tsx`.
+   Usa clases de Tailwind (ej: 'bg-kick-green' para el verde neón).
+
+2. Lógica de Lanzamiento (Físicas): Edita `src/pages/Overlay.tsx`.
+   La función `spawnItem` controla cómo se mueven los objetos.
+
+3. Conexión VTube Studio: Edita `src/vts/client.ts`.
+
+4. Puertos y Servidor Websocket: Edita `electron/main.ts` y `src/constants.ts`.
+
+INSTALACIÓN Y EJECUCIÓN
+-----------------------
+1. Instalar dependencias: `npm install`
+2. Modo desarrollo: `npm run dev`
+3. Construir ejecutable: `npm run build`
+
+NOTAS IMPORTANTES
+-----------------
+- Asegúrate de que VTube Studio tenga la API activada en el puerto 8001 (por defecto).
+- La primera vez que ejecutes la app, deberás aprobar el plugin en VTube Studio.

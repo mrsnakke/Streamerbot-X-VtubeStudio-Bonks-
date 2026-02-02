@@ -1,0 +1,5 @@
+{
+  "name": "KickBonk",
+  "description": "A modular, lightweight VTube Studio item thrower designed for Kick streamers. Features physics simulations and VTube Studio integration without Twitch dependencies.",
+  "requestFramePermissions": []
+}
